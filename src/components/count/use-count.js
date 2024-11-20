@@ -1,25 +1,10 @@
 import { useState } from "react";
 
-export const useCount = () => {
-  const [value, setValue] = useState({ value: 0 });
+export const useCount = ({ min = 0, max = 5 } = {}) => {
+  const [value, setValue] = useState(min);
 
-  const increase = () => {
-    setValue((currentValue) => {
-      return {
-        ...currentValue,
-        value: currentValue.value + 1,
-      };
-    });
-  };
-
-  const decrease = () => {
-    setValue((currentValue) => {
-      return {
-        ...currentValue,
-        value: currentValue.value - 1,
-      };
-    });
-  };
+  const increase = () => setValue(Math.min(value + 1), max);
+  const decrease = () => setValue(Math.max(value - 1), min);
 
   return {
     value,

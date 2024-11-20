@@ -2,17 +2,17 @@ import { Codecs } from "../codecs/codecs";
 import { Count } from "../count/count";
 import { Reviews } from "../reviews/reviews";
 
-export const Headphone = ({ headphone }) => {
-  const { name, reviews, codecs } = headphone;
-
+export const Headphone = ({ name, brand, reviews, codecs }) => {
   if (!name) return null;
 
   return (
-    <div>
+    <section>
       <h2>{name}</h2>
-      {Boolean(reviews.length) && <Reviews reviews={reviews} />}
-      <Codecs codecs={codecs} />
+      <h3>Brand</h3>
+      <div>{brand}</div>
+      {reviews.length ? <Reviews reviews={reviews} /> : <div>empty review</div>}
+      {codecs.length ? <Codecs codecs={codecs} /> : <div>empty codecs</div>}
       <Count onChange={console.log} />
-    </div>
+    </section>
   );
 };
