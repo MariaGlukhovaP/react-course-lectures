@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useCount = ({ min = 0, max = 5 } = {}) => {
+export const useCounter = ({ min = 0, max = 5 } = {}) => {
   const [value, setValue] = useState(min);
 
   const increase = () => setValue(Math.min(value + 1), max);
