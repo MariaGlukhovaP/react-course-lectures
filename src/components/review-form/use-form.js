@@ -4,19 +4,30 @@ const DEFAULT_FORM_VALUE = {
   name: "",
   text: "",
   address: "",
+  rating: 5,
 };
 
-//state - текущее состояние
-//action ({type, payload}): type - тип действия, payload - значение, на которое оно меняется (приходит из диспетчера)
+const SET_NAME_ACTION = "SET_NAME";
+const SET_TEXT_ACTION = "SET_TEXT";
+const SET_ADDRESS_ACTION = "SET_ADDRESS";
+const INCREMENT_RATING_ACTION = "INCREMENT_RATING_ACTION";
+const DECREMENT_RATING_ACTION = "DECREMENT_RATING_ACTION";
+const CLEAR_ACTION = "CLEAR_ACTION";
 
 const reducer = (state, { type, payload }) => {
   switch (type) {
-    case "SET_NAME":
+    case SET_NAME_ACTION:
       return { ...DEFAULT_FORM_VALUE, name: payload }; //не затрагивает text='', adress=''
-    case "SET_TEXT":
+    case SET_TEXT_ACTION:
       return { ...state, text: payload };
-    case "SET_ADDRESS":
+    case SET_ADDRESS_ACTION:
       return { ...state, address: payload };
+    case INCREMENT_RATING_ACTION:
+      return { ...state, rating: Math.min(state.rating + 1, 5) };
+    case DECREMENT_RATING_ACTION:
+      return { ...state, rating: Math.max(state.rating - 1, 1) };
+    case CLEAR_ACTION:
+      return DEFAULT_FORM_VALUE;
     default:
       return state;
   }
@@ -26,15 +37,25 @@ export const useForm = () => {
   const [form, dispatch] = useReducer(reducer, DEFAULT_FORM_VALUE); //reducer - функция, которая применяется к старому состоянию, чтобы получить новое
 
   const setName = (name) => {
-    dispatch({ type: "SET_NAME", payload: name }); //отправляет данные в action в reduser, payload - то, что передается в name
+    dispatch({ type: SET_NAME_ACTION, payload: name }); //отправляет данные в action в reduser, payload - то, что передается в name
   };
 
   const setText = (text) => {
-    dispatch({ type: "SET_TEXT", payload: text });
+    dispatch({ type: SET_TEXT_ACTION, payload: text });
   };
 
   const setAddress = (address) => {
-    dispatch({ type: "SET_ADDRESS", payload: address });
+    dispatch({ type: SET_ADDRESS_ACTION, payload: address });
+  };
+
+  const incrementRating = () => {
+    dispatch({ type: INCREMENT_RATING_ACTION });
+  };
+  const decrementRating = () => {
+    dispatch({ type: DECREMENT_RATING_ACTION });
+  };
+  const clear = () => {
+    dispatch({ type: CLEAR_ACTION });
   };
 
   return {
@@ -42,5 +63,8 @@ export const useForm = () => {
     setName,
     setText,
     setAddress,
+    incrementRating,
+    decrementRating,
+    clear,
   };
 };
