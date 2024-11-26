@@ -45,25 +45,7 @@ export const HeadphonesPage = ({ title }) => {
           brand={activeHeadphone.brand}
           reviews={activeHeadphone.reviews}
           codecs={activeHeadphone.codecs}
-          //key={activeHeadphone.id} происходит перемаунт и срабатывание эффектов
-        />
-      )}
-      {activeHeadphone && (
-        <Headphone
-          name={activeHeadphone.name}
-          brand={activeHeadphone.brand}
-          reviews={activeHeadphone.reviews}
-          codecs={activeHeadphone.codecs}
-          //key={activeHeadphone.id} происходит перемаунт и срабатывание эффектов
-        />
-      )}
-      {activeHeadphone && (
-        <Headphone
-          name={activeHeadphone.name}
-          brand={activeHeadphone.brand}
-          reviews={activeHeadphone.reviews}
-          codecs={activeHeadphone.codecs}
-          //key={activeHeadphone.id} происходит перемаунт и срабатывание эффектов
+          key={activeHeadphone.id}
         />
       )}
     </div>

@@ -13,3 +13,15 @@
 .colored {
   background: green;
 }
+
+.error.dark {
+  color: black;
+}
+
+.error.ligth {
+  color: white;
+}
+
+.light {
+  background-color: aquamarine;
+}

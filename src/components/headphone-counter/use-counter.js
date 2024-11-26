@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const useCounter = ({ min = 0, max = 5 } = {}) => {
   const [value, setValue] = useState(min);
@@ -13,9 +13,28 @@ export const useCounter = ({ min = 0, max = 5 } = {}) => {
     [min]
   );
 
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    timerRef.current = setInterval(increment, 1000);
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [increment]);
+
+  const stop = useCallback(() => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+  }, []);
+
   return {
     value,
     increment,
     decrement,
+    stop,
   };
 };
