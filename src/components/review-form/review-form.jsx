@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Counter } from "../counter/counter";
 import { useForm } from "./use-form";
+import { Button } from "../button/button";
 
 export const ReviewForm = () => {
   const {
@@ -65,7 +66,7 @@ export const ReviewForm = () => {
           decrement={decrementRating}
           increment={incrementRating}
         />
-        <button onClick={clear}>clear</button>
+        <Button onClick={clear}>clear</Button>
       </form>
     </div>
   );

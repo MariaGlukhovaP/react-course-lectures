@@ -1,14 +1,12 @@
-import { createContext } from "react";
+import { AuthContextProvider } from "../auth-context/auth-context";
 import { Footer } from "../footer/footer";
 import { Header } from "../header/header";
 import { ProgressBar } from "../progress-bar/progress-bar";
 import { ThemeContextProvider } from "../theme-context/theme-context";
 
-export const AuthContext = createContext();
-
 export const Layout = ({ children }) => {
   return (
-    <AuthContext.Provider value={true}>
+    <AuthContextProvider>
       <ThemeContextProvider>
         <div>
           <ProgressBar />
@@ -17,6 +15,6 @@ export const Layout = ({ children }) => {
           <Footer />
         </div>
       </ThemeContextProvider>
-    </AuthContext.Provider>
+    </AuthContextProvider>
   );
 };
