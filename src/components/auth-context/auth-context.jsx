@@ -11,6 +11,7 @@ export const AuthContextProvider = ({ children }) => {
         : { isAuthorized: true, name: "User" };
     });
   };
+
   return (
     <AuthContext.Provider value={{ auth, toggleAuth }}>
       {children}
