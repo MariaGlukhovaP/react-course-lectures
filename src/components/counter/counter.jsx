@@ -3,7 +3,7 @@ import { Button } from "../button/button";
 export const Counter = ({ value, increment, decrement }) => {
   return (
     <div>
-      <Button viewVariant="big" onClick={increment}>
+      <Button viewVariant="default" onClick={increment}>
         +
       </Button>
       {value}

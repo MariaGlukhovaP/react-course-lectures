@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { Counter } from "../counter/counter";
 import { useForm } from "./use-form";
 import { Button } from "../button/button";
@@ -16,13 +15,6 @@ export const ReviewForm = () => {
 
   const { name, address, text, rating } = form;
 
-  const inputRef = useRef(null); // {current: null}
-
-  useEffect(() => {
-    inputRef.current.focus();
-    console.log(inputRef.current.offsetWidth);
-  }, []);
-
   return (
     <div>
       <h3>Review Form</h3>
@@ -33,13 +25,6 @@ export const ReviewForm = () => {
             type="text"
             value={name}
             onChange={(event) => setName(event.target.value)}
-            ref={
-              inputRef
-              // inputRef.current = target;
-              //send analytics
-              // console.log(target);
-              // console.log("displayed");
-            }
           />
         </div>
 

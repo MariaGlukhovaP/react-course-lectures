@@ -3,6 +3,7 @@ import { headphonesSlice } from "./entities/headphones/headphones-slice";
 import { codecsSlice } from "./entities/codecs/codecs-slice";
 import { reviewsSlice } from "./entities/reviews/reviews-slice";
 import { usersSlice } from "./entities/users/users-slice";
+import { cartSlice } from "./UI/cart/cart-slice";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     [codecsSlice.name]: codecsSlice.reducer,
     [reviewsSlice.name]: reviewsSlice.reducer,
     [usersSlice.name]: usersSlice.reducer,
+    [cartSlice.name]: cartSlice.reducer,
   },
 });

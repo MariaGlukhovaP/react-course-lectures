@@ -1,20 +1,23 @@
-// import { useEffect } from "react";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Counter } from "../counter/counter";
-import { useCounter } from "./use-counter";
+import {
+  selectCartItemAmountById,
+  addToCart,
+  removeFromCart,
+} from "../../redux/UI/cart/cart-slice";
 
-export const HeadphoneCounter = () => {
-  const { value, increment, decrement, stop } = useCounter();
+export const HeadphoneCounter = ({ id }) => {
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    //бесконечный цикл без useCallback
-    increment();
-  }, [increment]);
+  const amount =
+    useSelector((state) => selectCartItemAmountById(state, id)) || 0;
+
+  const increment = () => dispatch(addToCart(id));
+  const decrement = () => dispatch(removeFromCart(id));
 
   return (
     <div>
-      <Counter value={value} increment={increment} decrement={decrement} />{" "}
-      <button onClick={stop}>stop</button>
+      <Counter value={amount} increment={increment} decrement={decrement} />
     </div>
   );
 };
