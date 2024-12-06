@@ -9,15 +9,7 @@ export const HeadphoneContainer = ({ id }) => {
     return null;
   }
 
-  const { name, brand, reviews, codecs } = headphone;
+  const { name, brand } = headphone;
 
-  return (
-    <Headphone
-      name={name}
-      brand={brand}
-      reviews={reviews}
-      codecs={codecs}
-      id={id}
-    />
-  );
+  return <Headphone name={name} brand={brand} id={id} />;
 };
