@@ -1,10 +1,13 @@
 import { Provider } from "react-redux";
 import { AuthContextProvider } from "./components/auth-context/auth-context";
-
 import { Layout } from "./components/layout/layout";
 import { ThemeContextProvider } from "./components/theme-context/theme-context";
 import { store } from "./redux/store";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import { HeadphonesPage } from "./pages/headphones-page";
 import { HeadphonePage } from "./pages/headphone-page";
 import { HomePage } from "./pages/home-page";
@@ -28,6 +31,7 @@ const router = createBrowserRouter([
             path: ":headphoneId",
             element: <HeadphonePage />,
             children: [
+              { index: true, element: <Navigate to="reviews" replace /> },
               { path: "reviews", element: <HeadphoneReviewsPage /> },
               { path: "codecs", element: <HeadphonesCodecsPage /> },
             ],
