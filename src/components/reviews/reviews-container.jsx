@@ -1,30 +1,32 @@
-import { useSelector } from "react-redux";
-import { selectHeadphoneById } from "../../redux/entities/headphones/headphones-slice";
 import { Reviews } from "./reviews";
-import { useRequest } from "../../redux/hooks/use-request";
-import { getUsers } from "../../redux/entities/users/get-users";
-import { getReviewsByHeadphoneId } from "../../redux/entities/reviews/get-reviews-by-headphone-id";
-import { REQUEST_PENDING_STATUS } from "../../redux/UI/request/constants";
+import {
+  useAddReviewMutation,
+  useGetReviewsByHeadphonesIdQuery,
+  useGetUsersQuery,
+} from "../../redux/services/api";
+import { useCallback } from "react";
 
 export const ReviewsContainer = ({ headphoneId }) => {
-  const headphone = useSelector((state) =>
-    selectHeadphoneById(state, headphoneId)
+  const { data, isFetching: isGetReviewsFetching } =
+    useGetReviewsByHeadphonesIdQuery(headphoneId);
+  useGetUsersQuery();
+
+  const [addReview, { isLoading: isAddReviewLoading }] = useAddReviewMutation();
+
+  const handleAddReview = useCallback(
+    (review) => {
+      addReview({ headphoneId, review });
+    },
+    [addReview, headphoneId]
   );
 
-  const getReviewsStatus = useRequest(getReviewsByHeadphoneId, headphoneId);
-  const getUsersStatus = useRequest(getUsers);
-
-  const isLoading =
-    getReviewsStatus === REQUEST_PENDING_STATUS ||
-    getUsersStatus === REQUEST_PENDING_STATUS;
-
-  if (isLoading) {
+  if (isGetReviewsFetching || isAddReviewLoading) {
     return "...loading";
   }
 
-  if (!headphone?.reviews) {
+  if (!data.length) {
     return null;
   }
 
-  return <Reviews reviewsIds={headphone.reviews} />;
+  return <Reviews reviews={data} onAddReview={handleAddReview} />;
 };
