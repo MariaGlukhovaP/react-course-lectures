@@ -13,7 +13,7 @@ export const apiSlice = createApi({
     }),
     getReviewsByHeadphonesId: builder.query({
       query: (headphoneId) => `/reviews?productId=${headphoneId}`,
-      providesTags: (headphoneId) => [{ type: "Reviews", headphoneId }],
+      providesTags: (...result) => [{ type: "Reviews", id: result[2] }],
     }),
     getCodecsByHeadphonesId: builder.query({
       query: (headphoneId) => `/codecs?productId=${headphoneId}`,
@@ -24,7 +24,9 @@ export const apiSlice = createApi({
         method: "POST",
         body: review,
       }),
-      invalidatesTags: ({ headphoneId }) => [{ type: "Reviews", headphoneId }],
+      invalidatesTags: (...result) => [
+        { type: "Reviews", id: result[2].headphoneId },
+      ],
     }),
   }),
 });
