@@ -10,11 +10,11 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import { HeadphonesPage } from "./pages/headphones-page";
 import { HeadphonePage } from "./pages/headphone-page";
 import { HomePage } from "./pages/home-page";
 import { HeadphoneReviewsPage } from "./pages/headphone-reviews-page";
 import { HeadphonesCodecsPage } from "./pages/headphone-codecs-page";
+import { HeadphonesLayout } from "./pages/headphones-layout";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "headphones",
-        element: <HeadphonesPage />,
+        element: <HeadphonesLayout />,
         children: [
           {
             path: ":headphoneId",

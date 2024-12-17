@@ -1,3 +1,5 @@
+"use client";
+
 import { Codecs } from "./codecs";
 import { useGetCodecsByHeadphonesIdQuery } from "../../redux/services/api";
 
