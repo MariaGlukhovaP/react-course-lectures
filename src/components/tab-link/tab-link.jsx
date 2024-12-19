@@ -1,8 +1,10 @@
+"use client";
+
 import classNames from "classnames";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import styles from "./tab-link.module.css";
-import { usePathname } from "next/navigation";
 
 export const TabLink = ({ href, title }) => {
   const pathname = usePathname();

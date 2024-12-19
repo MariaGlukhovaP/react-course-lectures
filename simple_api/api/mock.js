@@ -76,7 +76,7 @@ const normalizedHeadphones = [
     codecs: ["ngu45hg8374hg3g8", "djuh34782g6g7"],
   },
   {
-    name: "Sony WF-1000XM3",
+    name: "test",
     id: "WF1000XM3V",
     type: "true wireless",
     maxVolume: "100 dB",
